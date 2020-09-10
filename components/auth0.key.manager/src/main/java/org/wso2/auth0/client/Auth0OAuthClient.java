@@ -108,11 +108,11 @@ public class Auth0OAuthClient extends AbstractKeyManager {
                 this.audience = audience;
                 addedClientGrant = auth0ClientGrant.createClientGrant(auth0ClientGrantInfo);
             } else {
-                log.warn("Did not provided the audience");
+                log.warn("Did not provide the audience");
                 return createdOauthApplication;
             }
             if (addedClientGrant == null) {
-                log.warn("Error while adding audience");
+                log.warn("Error while adding the audience");
             }
             return createdOauthApplication;
         }
@@ -123,7 +123,7 @@ public class Auth0OAuthClient extends AbstractKeyManager {
      * This method will extract Audience from the {@code OAuthApplicationInfo} object.
      *
      * @param oAuthApplicationInfo oauth Application info object when creating an application.
-     * @return Audience specified in the
+     * @return Audience specified in the developer portal application configuration section.
      */
     private String getAudienceFromAuthAppRequest(OAuthApplicationInfo oAuthApplicationInfo) {
         Object parameter = oAuthApplicationInfo.getParameter(APIConstants.JSON_ADDITIONAL_PROPERTIES);
@@ -239,16 +239,16 @@ public class Auth0OAuthClient extends AbstractKeyManager {
                     }
                 } catch (FeignException e) {
                     if (e.status() == 409) {
-                        log.info("Client grant already exists.");
+                        log.warn("Client grant already exists.");
                         return createdOAuthApplication;
                     }
                 }
             } else {
-                log.warn("Did not provided the audience");
+                log.warn("Did not provide the audience");
                 return createdOAuthApplication;
             }
             if (addedClientGrant == null) {
-                log.warn("Error while adding audience");
+                log.warn("Error while adding the audience");
             }
             return createdOAuthApplication;
         }

@@ -48,39 +48,31 @@ public class Auth0ConnectorConfiguration implements KeyManagerConnectorConfigura
         List<ConfigurationDto> configurationDtoList = new ArrayList<>();
         configurationDtoList
                 .add(new ConfigurationDto(Auth0Constants.CLIENT_ID, "Client ID", "input",
-                        "Client ID of service Application", "",
-                        true,
+                        "Client ID of Service Application", "", true,
                         false, Collections.emptyList(), false));
         configurationDtoList
                 .add(new ConfigurationDto(Auth0Constants.CLIENT_SECRET, "Client Secret", "input",
-                        "Client Secret of service Application", "", true,
+                        "Client Secret of Service Application", "", true,
                         true, Collections.emptyList(), false));
-        configurationDtoList
-                .add(new ConfigurationDto(Auth0Constants.AUDIENCE, "Audience", "input",
-                        "Audience of the Admin API", "https://[tenant].[region].auth0.com/api/v2/",
-                        true,
-                        false, Collections.emptyList(), false));
+        configurationDtoList.add(new ConfigurationDto(Auth0Constants.AUDIENCE, "Audience", "input",
+                "Audience of the Admin API", "https://[tenant].[region].auth0.com/api/v2/",
+                true, false, Collections.emptyList(), false));
         return configurationDtoList;
     }
 
     @Override
     public List<ConfigurationDto> getApplicationConfigurations() {
         List<ConfigurationDto> configurationDtoList = new ArrayList<>();
-        configurationDtoList
-                .add(new ConfigurationDto("app_type", "Application Type", "select",
-                        "Type Of Application to create", "regular_web", false,
-                        false, Arrays.asList("regular_web", "native", "spa", "non_interactive"), false));
-        configurationDtoList
-                .add(new ConfigurationDto("token_endpoint_auth_method",
-                        "Token Endpoint Authentication Method", "select",
-                        "How to Authenticate Token Endpoint", "client_secret_basic", true,
-                        true, Arrays.asList("client_secret_basic", "client_secret_post"),
-                        false));
-        configurationDtoList
-                .add(new ConfigurationDto("audience_of_api",
-                        "Audience of the API", "text",
-                        "Audience of the API which intended to use this application", "",
-                        true, false, Collections.emptyList(), false));
+        configurationDtoList.add(new ConfigurationDto("app_type", "Application Type", "select",
+                "Type of the application to create", "regular_web", false,
+                false, Arrays.asList("regular_web", "native", "spa", "non_interactive"), false));
+        configurationDtoList.add(new ConfigurationDto("token_endpoint_auth_method",
+                "Token Endpoint Authentication Method", "select",
+                "How to Authenticate Token Endpoint", "client_secret_basic", true,
+                true, Arrays.asList("client_secret_basic", "client_secret_post"), false));
+        configurationDtoList.add(new ConfigurationDto("audience_of_api", "Audience of the API",
+                "text", "The audience of the API which intended to use this application", "",
+                true, false, Collections.emptyList(), false));
         return configurationDtoList;
     }
 

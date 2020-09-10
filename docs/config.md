@@ -1,4 +1,4 @@
-# Integrate WSO2 API Manager 3.2.0 with Auth0
+# Integrate WSO2 API Manager with Auth0
 
 In this guide, we explain how to integrate the WSO2 API Manager with an external Identity provider Auth0 as the OAuth Authorization Server 
 to manage the OAuth clients and tokens required by WSO2 API Manager. This is a client implementation that consumes APIs exposed by Auth0
@@ -6,6 +6,8 @@ to manage the OAuth clients and tokens required by WSO2 API Manager. This is a c
 ## Follow the instructions below to configure the third-party Key Manager
 
 ### Step 1 : Prerequisites
+
+_Please note that this is supported only from the API Manager 3.2.0 onwards_.
 
 1.  Create an Auth0 account. Get the URL for the tenant. and then sign into the dashboard.
 
@@ -33,7 +35,11 @@ to manage the OAuth clients and tokens required by WSO2 API Manager. This is a c
     ![alt text](images/km-tyoe.png)
  
     **List of well know address could be found in advance section of the Auth0 Application settings**    
-        ![alt text](images/endpoints.png)
+    
+        Eg. https://my-tenant.us.auth0.com/.well-known/openid-configuration
+    
+    ![alt text](images/endpoints.png)
+    
     
 3.  The client ID, Client secret of the application created to invoke Manage API should be provided for the settings. You can get to the audience 
 value from the Manage API.
@@ -42,7 +48,7 @@ value from the Manage API.
 
 ### Step 3 : Create new application and generate keys
 
-1.  Create new application form the developer portal.
+1.  Create new application from the developer portal.
     ![alt text](images/dev-app-create.png)
 
 2.  Then click either production or sandbox, Select Auth0 fill the relevant fields accordingly.

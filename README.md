@@ -6,7 +6,7 @@ by WSO2 API Manager. We have a sample client implementation that consumes the AP
 
 ## Getting Started
 
-To get started, go to [Integrate WSO2 API Manager 3.2.0 with Auth0](docs/config.md).
+To get started, go to [Integrate WSO2 API Manager with Auth0](docs/config.md).
 
 ## Build
 

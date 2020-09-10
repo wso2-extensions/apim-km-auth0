@@ -68,7 +68,7 @@ public class Auth0APIKeyInterceptor implements RequestInterceptor {
                 this.accessTokenInfo.setCreatedAt(System.currentTimeMillis());
             }
         } catch (APIManagementException e) {
-            log.error("Error while encoding credentials", e);
+            log.error("Error while encoding credentials for client ID : " + this.consumerKey, e);
         }
     }
 }
