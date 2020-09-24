@@ -159,7 +159,12 @@
       <url>http://maven.wso2.org/nexus/content/repositories/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
-
+  <scm>
+    <connection>scm:git:https://github.com/wso2-extensions/apim-km-auth0.git</connection>
+    <url>https://github.com/wso2-extensions/apim-km-auth0.git</url>
+    <developerConnection>scm:git:https://github.com/wso2-extensions/apim-km-auth0.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
   <properties>
     <carbon.apimgt.version>6.7.205</carbon.apimgt.version>
     <json.simple.version>1.1</json.simple.version>
