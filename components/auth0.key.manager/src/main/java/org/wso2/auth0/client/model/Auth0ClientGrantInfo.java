@@ -19,8 +19,9 @@
 package org.wso2.auth0.client.model;
 
 import com.google.gson.annotations.SerializedName;
+import org.wso2.carbon.apimgt.impl.APIConstants;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class Auth0ClientGrantInfo {
@@ -34,7 +35,7 @@ public class Auth0ClientGrantInfo {
     public Auth0ClientGrantInfo(String clientId, String audience) {
         this.clientId = clientId;
         this.audience = audience;
-        this.scope = Collections.emptyList();
+        this.scope = Arrays.asList(APIConstants.OAUTH2_DEFAULT_SCOPE);
     }
 
     public String getClientId() {
