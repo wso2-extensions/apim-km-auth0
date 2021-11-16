@@ -232,8 +232,8 @@ public class Auth0OAuthClient extends AbstractKeyManager {
             Auth0ClientGrantInfo addedClientGrant = null;
             if (!audience.isEmpty()) {
                 try {
-                    addedClientGrant = auth0ClientGrant.createClientGrant(auth0ClientGrantInfo);
                     this.audience = audience;
+                    addedClientGrant = auth0ClientGrant.createClientGrant(auth0ClientGrantInfo);
                     if (addedClientGrant != null) {
                         return createdOAuthApplication;
                     }
@@ -377,6 +377,11 @@ public class Auth0OAuthClient extends AbstractKeyManager {
     @Override
     public AccessTokenInfo getAccessTokenByConsumerKey(String s) throws APIManagementException {
         return null;
+    }
+
+    @Override
+    public boolean canHandleToken(String accessToken) throws APIManagementException {
+        return false;
     }
 
     @Override
