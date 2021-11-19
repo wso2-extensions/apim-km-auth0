@@ -71,7 +71,6 @@ public class Auth0OAuthClient extends AbstractKeyManager {
     private Auth0DCRClient auth0DCRClient;
     private Auth0ClientGrant auth0ClientGrant;
     private Auth0TokenClient auth0TokenClient;
-    private String audience;
 
     /**
      * Returns base64 encoded credentials.
@@ -105,7 +104,6 @@ public class Auth0OAuthClient extends AbstractKeyManager {
                     audience);
             Auth0ClientGrantInfo addedClientGrant = null;
             if (!audience.isEmpty()) {
-                this.audience = audience;
                 addedClientGrant = auth0ClientGrant.createClientGrant(auth0ClientGrantInfo);
             } else {
                 log.warn("Did not provide the audience");
@@ -232,7 +230,6 @@ public class Auth0OAuthClient extends AbstractKeyManager {
             Auth0ClientGrantInfo addedClientGrant = null;
             if (!audience.isEmpty()) {
                 try {
-                    this.audience = audience;
                     addedClientGrant = auth0ClientGrant.createClientGrant(auth0ClientGrantInfo);
                     if (addedClientGrant != null) {
                         return createdOAuthApplication;
@@ -270,10 +267,10 @@ public class Auth0OAuthClient extends AbstractKeyManager {
     @Override
     public AccessTokenInfo getNewApplicationAccessToken(AccessTokenRequest accessTokenRequest)
             throws APIManagementException {
-        String scopes = "";
-        if (accessTokenRequest.getScope() != null && (accessTokenRequest.getScope().length > 0)) {
-            scopes = String.join(" ", accessTokenRequest.getScope());
-        }
+        Auth0ClientGrantInfo[] clientGrantInfos = auth0ClientGrant.getClientGrant(accessTokenRequest.getClientId());
+        String audience = clientGrantInfos.length > 0 ? clientGrantInfos[0].getAudience() : "";
+        String scopes = accessTokenRequest.getScope() != null && (accessTokenRequest.getScope().length > 0) ?
+                String.join(" ", accessTokenRequest.getScope()) : "";
         String grantType = accessTokenRequest.getGrantType() != null ?
                 accessTokenRequest.getGrantType() : Auth0Constants.GRANT_TYPE_CLIENT_CREDENTIALS;
         String basicCredentials = getEncodedCredentials(accessTokenRequest.getClientId(),
