@@ -4,13 +4,13 @@
     <parent>
         <groupId>org.wso2.km.ext.auth0</groupId>
         <artifactId>auth0.auth.client</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.3</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.wso2.km.ext.auth0</groupId>
     <artifactId>auth0.key.manager.feature</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
     <name>Auth0 Key Manager Feature</name>
     <packaging>pom</packaging>
     <dependencies>
