@@ -23,9 +23,9 @@ import feign.Param;
 import feign.RequestLine;
 
 public interface Auth0ClientGrant {
-    @RequestLine("GET ?audience={audience}&client_id={client_id}")
+    @RequestLine("GET ?client_id={client_id}")
     @Headers("Content-Type: application/json")
-    public Auth0ClientGrantInfo getClientGrant(@Param("audience") String audience, @Param("client_id") String clientId);
+    public Auth0ClientGrantInfo[] getClientGrant(@Param("client_id") String clientId);
 
     @RequestLine("POST")
     @Headers("Content-Type: application/json")
