@@ -143,6 +143,8 @@ public class Auth0OAuthClient extends AbstractKeyManager {
         appInfo.setClientName(createdApplication.getClientName());
         appInfo.setClientId(createdApplication.getClientId());
         appInfo.setClientSecret(createdApplication.getClientSecret());
+        String audience = "";
+
         if (createdApplication.getRedirectUris() != null && createdApplication.getRedirectUris().size() > 0) {
             appInfo.setCallBackURL(String.join(",", createdApplication.getRedirectUris()));
         }
@@ -151,17 +153,20 @@ public class Auth0OAuthClient extends AbstractKeyManager {
         }
         if (StringUtils.isNotEmpty(createdApplication.getClientId())) {
             appInfo.addParameter(ApplicationConstants.OAUTH_CLIENT_ID, createdApplication.getClientId());
+            Auth0ClientGrantInfo[] clientGrantInfos = auth0ClientGrant.getClientGrant(createdApplication.getClientId());
+            audience = clientGrantInfos.length > 0 ? clientGrantInfos[0].getAudience() : "";
         }
         if (StringUtils.isNotEmpty(createdApplication.getClientSecret())) {
             appInfo.addParameter(ApplicationConstants.OAUTH_CLIENT_SECRET, createdApplication.getClientSecret());
         }
         if (createdApplication.getGrantTypes() != null && createdApplication.getGrantTypes().size() > 0) {
-            appInfo.addParameter(APIConstants.JSON_GRANT_TYPES, String.join(",",
-                    createdApplication.getGrantTypes()));
+            appInfo.addParameter(APIConstants.JSON_GRANT_TYPES, String.join(" ", createdApplication.getGrantTypes()));
         }
+
         String additionalProperties = new Gson().toJson(createdApplication);
-        appInfo.addParameter(APIConstants.JSON_ADDITIONAL_PROPERTIES,
-                new Gson().fromJson(additionalProperties, Map.class));
+        Map additionalPropMap = new Gson().fromJson(additionalProperties, Map.class);
+        additionalPropMap.put(Auth0Constants.API_AUDIENCE, audience);
+        appInfo.addParameter(APIConstants.JSON_ADDITIONAL_PROPERTIES, additionalPropMap);
         return appInfo;
     }
 
