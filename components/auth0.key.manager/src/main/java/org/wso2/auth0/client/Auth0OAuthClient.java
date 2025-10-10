@@ -332,10 +332,10 @@ public class Auth0OAuthClient extends AbstractKeyManager {
                 (String) keyManagerConfiguration.getParameter(Auth0Constants.CLIENT_ID),
                 (String) keyManagerConfiguration.getParameter(Auth0Constants.CLIENT_SECRET),
                 (String) keyManagerConfiguration.getParameter(Auth0Constants.AUDIENCE));
-        String clientRegistrationEndpoint =
-                ((String) keyManagerConfiguration.getParameter(Auth0Constants.AUDIENCE)).concat("clients");
-        String clientGrantEndpoint =
-                ((String) keyManagerConfiguration.getParameter(Auth0Constants.AUDIENCE)).concat("client-grants");
+        String clientRegistrationEndpoint = ((String) keyManagerConfiguration.getParameter(Auth0Constants.AUDIENCE))
+                .concat("clients");
+        String clientGrantEndpoint = ((String) keyManagerConfiguration.getParameter(Auth0Constants.AUDIENCE))
+                .concat("client-grants");
         auth0DCRClient = Feign.builder().client(new OkHttpClient()).encoder(new GsonEncoder())
                 .decoder(new GsonDecoder()).errorDecoder(new ErrorDecoder.Default())
                 .logger(new Slf4jLogger()).requestInterceptor(auth0APIKeyInterceptor)
